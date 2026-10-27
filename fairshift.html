@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>FairShift</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap">
+<style>
+:root{--bg:#EEF3F2;--card:#fff;--ink:#16302E;--mut:#5A726F;--pri:#0E7C66;--on:#fff;--acc:#E8A317;--warn:#C8501E;--line:#D5E0DD;--soft:#E3F1ED;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A19;--card:#172524;--ink:#E4EFEC;--mut:#93ADA8;--pri:#3CC2A0;--on:#0F1A19;--acc:#F2B73B;--warn:#F08A5D;--line:#2A3E3B;--soft:#1C3330}}
+:root[data-theme="dark"]{--bg:#0F1A19;--card:#172524;--ink:#E4EFEC;--mut:#93ADA8;--pri:#3CC2A0;--on:#0F1A19;--acc:#F2B73B;--warn:#F08A5D;--line:#2A3E3B;--soft:#1C3330}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 "Noto Sans","Noto Sans Tamil","Noto Sans Devanagari",system-ui,sans-serif}
+button,select,textarea{font:inherit;color:inherit}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--card);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;font-size:1.25rem;letter-spacing:-.01em}
+.brand i{font-style:normal;color:var(--pri)}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:none;padding:6px 14px;cursor:pointer;min-height:36px}
+.seg button.on{background:var(--pri);color:var(--on);font-weight:600}
+select{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 8px;min-height:36px}
+button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+main{padding:16px;max-width:1080px;margin:0 auto}
+.phone{max-width:460px;margin:0 auto;padding-bottom:84px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+h2{font-size:1.15rem;margin:0 0 10px}
+h3{font-size:1rem;margin:0 0 8px}
+.mut{color:var(--mut);font-size:.9rem}
+.big{width:100%;min-height:64px;border:0;border-radius:12px;background:var(--pri);color:var(--on);font-size:1.1rem;font-weight:700;cursor:pointer}
+.big.alt{background:var(--acc);color:#2A2000}
+.btn{border:1px solid var(--pri);background:none;color:var(--pri);border-radius:10px;padding:8px 14px;min-height:44px;cursor:pointer;font-weight:600}
+.btn.fill{background:var(--pri);color:var(--on)}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabs div{display:flex;width:100%;max-width:460px}
+.tabs button{flex:1;border:0;background:none;padding:8px 2px;min-height:60px;cursor:pointer;font-size:.78rem;color:var(--mut)}
+.tabs button span{display:block;font-size:1.4rem;line-height:1.2}
+.tabs button.on{color:var(--pri);font-weight:700;box-shadow:inset 0 3px 0 var(--pri)}
+.alert{border-left:6px solid var(--warn);background:var(--card)}
+.alert.ok{border-left-color:var(--pri)}
+.row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border:0}
+.row.tot{font-weight:700;font-size:1.15rem;border-top:2px solid var(--ink);border-bottom:0;margin-top:4px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px}
+.bars div{flex:1;background:var(--pri);border-radius:5px 5px 0 0;position:relative;min-height:4px}
+.bars div.hi{background:var(--warn)}
+.bars b{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:.72rem;font-weight:600}
+.lab{display:flex;gap:6px;margin-top:4px}.lab span{flex:1;text-align:center;font-size:.72rem;color:var(--mut)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--line);background:none;border-radius:999px;padding:8px 14px;min-height:44px;cursor:pointer}
+.chip.on{border-color:var(--pri);background:var(--soft);font-weight:600}
+textarea{width:100%;min-height:96px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg)}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:.8rem;font-weight:600;background:var(--soft)}
+.tag.o{background:var(--warn);color:#fff}.tag.p{background:var(--acc);color:#2A2000}.tag.r{background:var(--pri);color:var(--on)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi b{display:block;font-size:2rem;line-height:1.1}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);font-size:.92rem}
+.meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden;min-width:60px}.meter i{display:block;height:100%;background:var(--warn)}
+.stars button{border:0;background:none;font-size:2rem;cursor:pointer;color:var(--line);min-width:44px;min-height:44px}.stars button.on{color:var(--acc)}
+.sk{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed var(--line)}.sk:last-child{border:0}
+.sk em{font-style:normal;font-size:1.6rem}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.skip{position:absolute;left:-999px;top:0;background:var(--pri);color:var(--on);padding:10px 14px;z-index:9}.skip:focus{left:8px;top:8px}
+@media(prefers-reduced-motion:no-preference){.bars div{transition:height .4s}}
+</style>
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<header>
+  <div class="brand">Fair<i>Shift</i></div>
+  <div class="ctl">
+    <div class="seg" id="ind" role="group" aria-label="Industry"></div>
+    <select id="lang" aria-label="Language"><option value="0">English</option><option value="1">தமிழ்</option><option value="2">हिन्दी</option></select>
+    <div class="seg" id="role" role="group" aria-label="View"></div>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<div id="live" class="sr" role="status" aria-live="polite"></div>
+<script>
+var T={
+today:["Today","இன்று","आज"],payslip:["Payslip","சம்பளச் சீட்டு","वेतन पर्ची"],report:["Report","புகார்","शिकायत"],feedback:["Feedback","கருத்து","राय"],skills:["Skills","திறன்கள்","कौशल"],
+checkIn:["Scan QR to check in","வருகைக்கு QR ஸ்கேன் செய்யுங்கள்","हाज़िरी के लिए QR स्कैन करें"],checkOut:["Check out","வெளியேறுங்கள்","छुट्टी दर्ज करें"],
+inAt:["Checked in at","வருகை நேரம்","आगमन समय"],regular:["Regular hours","சாதாரண மணி","सामान्य घंटे"],ot:["Overtime hours","கூடுதல் நேர மணி","ओवरटाइम घंटे"],
+fTitle:["Rest alert","ஓய்வு எச்சரிக்கை","आराम की चेतावनी"],
+fMsg:["You worked {h} hours in the last 7 days. Please talk to your supervisor about rest.","கடந்த 7 நாட்களில் {h} மணி நேரம் வேலை செய்தீர்கள். ஓய்வுக்கு மேற்பார்வையாளரிடம் பேசுங்கள்.","पिछले 7 दिनों में आपने {h} घंटे काम किया। आराम के लिए सुपरवाइज़र से बात करें।"],
+fOk:["Your hours this week are healthy: {h} hours.","இந்த வார வேலை நேரம் சரியாக உள்ளது: {h} மணி.","इस सप्ताह आपके काम के घंटे ठीक हैं: {h} घंटे।"],
+week:["Last 7 days (hours)","கடந்த 7 நாட்கள் (மணி)","पिछले 7 दिन (घंटे)"],
+earn:["Earnings","வருமானம்","कमाई"],ded:["Deductions","பிடித்தங்கள்","कटौती"],net:["Take-home pay","கையில் கிடைப்பது","हाथ में मिलने वाला वेतन"],
+basic:["Basic pay","அடிப்படை சம்பளம்","मूल वेतन"],otPay:["Overtime pay (1.5×)","கூடுதல் நேர ஊதியம் (1.5×)","ओवरटाइम वेतन (1.5×)"],allow:["Allowance","படி","भत्ता"],
+pf:["Provident fund (12%)","வருங்கால வைப்பு நிதி (12%)","भविष्य निधि (12%)"],esi:["ESI (0.75%)","ESI (0.75%)","ESI (0.75%)"],
+listen:["Listen","கேளுங்கள்","सुनें"],how:["How this was calculated","இது எப்படி கணக்கிடப்பட்டது","यह कैसे गिना गया"],
+howTxt:["{d} days × 8 hours × ₹{r} per hour, plus {o} overtime hours at 1.5 times.","{d} நாட்கள் × 8 மணி × ₹{r}, கூடுதலாக {o} கூடுதல் நேர மணி 1.5 மடங்கில்.","{d} दिन × 8 घंटे × ₹{r} प्रति घंटा, साथ में {o} ओवरटाइम घंटे 1.5 गुना पर।"],
+rTitle:["Report a problem","பிரச்சனையை தெரிவிக்கவும்","समस्या बताएं"],safety:["Safety hazard","பாதுகாப்பு ஆபத்து","सुरक्षा खतरा"],grv:["Complaint","புகார்","शिकायत"],
+speak:["Speak","பேசுங்கள்","बोलें"],desc:["Describe the issue…","பிரச்சனையை விவரிக்கவும்…","समस्या बताएं…"],anon:["Hide my name","என் பெயரை மறை","मेरा नाम छुपाएं"],send:["Send","அனுப்பு","भेजें"],
+mine:["My reports","என் புகார்கள்","मेरी शिकायतें"],open:["Open","திறந்துள்ளது","खुली"],prog:["In progress","நடவடிக்கையில்","प्रक्रिया में"],done:["Resolved","தீர்க்கப்பட்டது","हल हुई"],
+sent:["Sent. The status will show below.","அனுப்பப்பட்டது. நிலை கீழே தெரியும்.","भेज दिया गया। स्थिति नीचे दिखेगी।"],
+fbT:["Anonymous feedback","பெயர் இல்லாத கருத்து","गुमनाम राय"],fbN:["Your name is never saved with this.","இதனுடன் உங்கள் பெயர் சேமிக்கப்படாது.","इसके साथ आपका नाम कभी सेव नहीं होता।"],
+topic:["Topic","தலைப்பு","विषय"],rate:["How is it?","எப்படி உள்ளது?","कैसा है?"],thanks:["Thank you. Your feedback was sent anonymously.","நன்றி. உங்கள் கருத்து பெயரின்றி அனுப்பப்பட்டது.","धन्यवाद। आपकी राय गुमनाम भेजी गई।"],
+pass:["Skill passport","திறன் அட்டை","कौशल पासपोर्ट"],ver:["Verified","சரிபார்க்கப்பட்டது","सत्यापित"],passN:["Stays with you when you change jobs.","வேலை மாறினாலும் உங்களுடன் இருக்கும்.","नौकरी बदलने पर भी आपके साथ रहता है।"],
+wait:["Please wait a minute before sending again.","மீண்டும் அனுப்ப ஒரு நிமிடம் காத்திருங்கள்.","दोबारा भेजने से पहले एक मिनट रुकें।"],nomic:["Voice input is not available on this device. Please type.","இந்த சாதனத்தில் குரல் வசதி இல்லை. தட்டச்சு செய்யுங்கள்.","इस डिवाइस पर आवाज़ की सुविधा नहीं है। कृपया टाइप करें।"]
+};
+var TOP={c:[["Supervisor","மேற்பார்வையாளர்","सुपरवाइज़र"],["Safety gear","பாதுகாப்பு உபகரணம்","सुरक्षा उपकरण"],["Pay on time","சரியான நேரத்தில் சம்பளம்","समय पर वेतन"]],
+u:[["Department head","துறைத் தலைவர்","विभागाध्यक्ष"],["Workload","வேலைச் சுமை","काम का बोझ"],["Facilities","வசதிகள்","सुविधाएं"]]};
+var D={
+c:{name:"Construction site",short:"Construction",who:"Murugan S",role:["Mason","கொத்தனார்","राजमिस्त्री"],site:"Chennai Metro Site B",rate:90,days:24,ot:22,allow:1500,wk:[10,11,10,12,10,11,9],
+ att:[94,95,91,96,93,88,62],pres:"52 of 60",
+ team:[["Murugan S",73,96,2,7],["Ravi K",64,88,2,5],["Selvi P",48,97,4,3],["Imran A",58,79,2,3],["Lakshmi R",44,94,5,4],["Karthik V",66,82,3,6]],
+ skills:[["🦺","Working at Height","Cert. 2025"],["🏗️","Scaffolding Level 2","Cert. 2024"],["🧱","Masonry","6 years experience"],["🚑","First Aid","Cert. 2025"]]},
+u:{name:"College",short:"College",who:"Priya K",role:["Lab assistant","ஆய்வக உதவியாளர்","प्रयोगशाला सहायक"],site:"SRM Science Block",rate:150,days:24,ot:6,allow:1200,wk:[9,9,9,8,7,0,0],
+ att:[97,96,98,95,90,45,30],pres:"57 of 60",
+ team:[["Priya K",42,98,4,5],["Dr. Arun M",58,92,3,6],["Kavitha S",63,90,2,6],["Suresh B",46,81,2,2],["Nisha T",40,99,5,5],["Rahul D",61,86,3,7]],
+ skills:[["🔬","Lab Safety Training","Cert. 2025"],["💻","Student Records System","Cert. 2024"],["🧪","Chemical Handling","Cert. 2024"],["🎓","Lab Support","4 years experience"]]}
+};
+var DAYS=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+var S={ind:"c",lang:0,role:"w",tab:"today",inAt:null,out:null,rt:"safety",anon:false,topic:0,rate:0,msg:"",thanks:false,
+reports:[
+ {id:1,ind:"c",type:"safety",text:"Loose scaffold plank on level 3, east side.",anon:true,mine:false,status:"open"},
+ {id:2,ind:"c",type:"grv",text:"Overtime on Saturday was not counted.",anon:false,who:"Imran A",mine:false,status:"prog"},
+ {id:3,ind:"u",type:"safety",text:"Fume cupboard in Lab 2 is not extracting properly.",anon:true,mine:false,status:"open"},
+ {id:4,ind:"u",type:"grv",text:"Invigilation duty added without notice.",anon:false,who:"Kavitha S",mine:false,status:"prog"}],
+fb:[
+ {ind:"c",topic:0,rate:2,text:"Supervisor shouts in front of everyone."},{ind:"c",topic:1,rate:2,text:"Helmets are old and cracked."},{ind:"c",topic:2,rate:4,text:""},{ind:"c",topic:1,rate:1,text:"No harness for roof work."},
+ {ind:"u",topic:0,rate:4,text:""},{ind:"u",topic:1,rate:2,text:"Too many duties in exam season."},{ind:"u",topic:2,rate:3,text:""},{ind:"u",topic:1,rate:1,text:"Weekend work with no extra pay."}]};
+var nid=10;
+var $=function(s){return document.querySelector(s)};
+var tr=function(k,v){var s=T[k][S.lang];for(var x in(v||{}))s=s.replace("{"+x+"}",v[x]);return s};
+var inr=function(n){return "₹"+Math.round(n).toLocaleString("en-IN")};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+var MAXLEN=500;
+function clean(s){return String(s||"").replace(/[\u0000-\u001F\u007F]/g," ").replace(/\s+/g," ").trim().slice(0,MAXLEN)}
+var sentAt=[];
+function allowed(){var n=Date.now();sentAt=sentAt.filter(function(t){return n-t<60000});if(sentAt.length>=5)return false;sentAt.push(n);return true}
+function say(m){var l=$("#live");if(l)l.textContent=m}
+function streak(a){var n=0;for(var i=a.length-1;i>=0&&a[i]>0;i--)n++;return n}
+function sum(a){return a.reduce(function(x,y){return x+y},0)}
+function risk(m){var r=0;if(m[1]>60)r+=30;if(m[2]<85)r+=25;if(m[3]<=2)r+=30;if(m[4]>=6)r+=15;return r}
+function pay(d){var reg=d.days*8*d.rate,otp=d.ot*d.rate*1.5,g=reg+otp+d.allow,pf=reg*.12,esi=g*.0075;return{reg:reg,otp:otp,al:d.allow,g:g,pf:pf,esi:esi,net:g-pf-esi}}
+function stName(s){return s==="open"?tr("open"):s==="prog"?tr("prog"):tr("done")}
+function tagCls(s){return s==="open"?"o":s==="prog"?"p":"r"}
+
+function chrome(){
+  $("#ind").innerHTML=["c","u"].map(function(k){return '<button class="'+(S.ind===k?"on":"")+'" aria-pressed="'+(S.ind===k)+'" data-i="'+k+'">'+D[k].short+'</button>'}).join("");
+  $("#role").innerHTML=[["w","Worker"],["e","Employer"]].map(function(r){return '<button class="'+(S.role===r[0]?"on":"")+'" aria-pressed="'+(S.role===r[0])+'" data-r="'+r[0]+'">'+r[1]+'</button>'}).join("");
+  $("#lang").value=S.lang;
+  document.documentElement.lang=["en","ta","hi"][S.lang];
+}
+
+function worker(){
+  var d=D[S.ind],tabs=[["today","📍","today"],["pay","💰","payslip"],["rep","📣","report"],["fb","💬","feedback"],["sk","🎓","skills"]],h="";
+  h+='<div class="phone"><div class="card"><b>'+d.who+'</b><div class="mut">'+d.role[S.lang]+' · '+d.site+'</div></div>';
+  if(S.tab==="today")h+=today(d);
+  if(S.tab==="pay")h+=payTab(d);
+  if(S.tab==="rep")h+=repTab();
+  if(S.tab==="fb")h+=fbTab();
+  if(S.tab==="sk")h+=skTab(d);
+  h+='</div><nav class="tabs" aria-label="Main"><div>'+tabs.map(function(t){return '<button class="'+(S.tab===t[0]?"on":"")+'" data-t="'+t[0]+'"'+(S.tab===t[0]?' aria-current="page"':'')+'><span aria-hidden="true">'+t[1]+'</span>'+tr(t[2])+'</button>'}).join("")+'</div></nav>';
+  return h;
+}
+function today(d){
+  var h='<div class="card">';
+  if(!S.inAt){h+='<button class="big" id="scan">▣ '+tr("checkIn")+'</button>'}
+  else{
+    var tm=S.inAt.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+    h+='<h2>✔ '+tr("inAt")+' '+tm+'</h2>';
+    if(S.out)h+='<div class="row"><span>'+tr("regular")+'</span><b>'+S.out.reg+'</b></div><div class="row"><span>'+tr("ot")+'</span><b>'+S.out.ot+'</b></div><div class="mut">Demo: shift fast-forwarded to 10.5 hours.</div>';
+    else h+='<button class="big alt" id="out">'+tr("checkOut")+'</button>';
+  }
+  h+='</div>';
+  var w=sum(d.wk),bad=w>60||streak(d.wk)>=7,mx=Math.max.apply(null,d.wk);
+  h+='<div class="card alert '+(bad?"":"ok")+'"><h3>'+(bad?"⚠ "+tr("fTitle"):"✔")+'</h3><div>'+tr(bad?"fMsg":"fOk",{h:w})+'</div></div>';
+  h+='<div class="card"><h3>'+tr("week")+'</h3><div class="bars" role="img" aria-label="'+esc(tr("week")+": "+d.wk.join(", "))+'">'+d.wk.map(function(v){return '<div class="'+(v>=11?"hi":"")+'" style="height:'+(v/mx*100)+'%"><b>'+v+'</b></div>'}).join("")+'</div><div class="lab">'+DAYS.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div></div>';
+  return h;
+}
+function payTab(d){
+  var p=pay(d),r=function(k,v,neg){return '<div class="row"><span>'+tr(k)+'</span><span>'+(neg?"− ":"")+inr(v)+'</span></div>'};
+  return '<div class="card"><h2>'+tr("payslip")+' · Oct 2026</h2><h3>'+tr("earn")+'</h3>'+r("basic",p.reg)+r("otPay",p.otp)+r("allow",p.al)+'<h3 style="margin-top:12px">'+tr("ded")+'</h3>'+r("pf",p.pf,1)+r("esi",p.esi,1)+'<div class="row tot"><span>'+tr("net")+'</span><span>'+inr(p.net)+'</span></div></div>'
+  +'<div class="card"><h3>'+tr("how")+'</h3><div>'+tr("howTxt",{d:d.days,r:d.rate,o:d.ot})+'</div><p><button class="btn" id="speak">🔊 '+tr("listen")+'</button></p></div>';
+}
+function repTab(){
+  var mine=S.reports.filter(function(x){return x.mine&&x.ind===S.ind});
+  var h='<div class="card"><h2>'+tr("rTitle")+'</h2><div class="chips" style="margin-bottom:12px">'+["safety","grv"].map(function(k){return '<button class="chip '+(S.rt===k?"on":"")+'" data-rt="'+k+'" aria-pressed="'+(S.rt===k)+'">'+(k==="safety"?"⚠ ":"✉ ")+tr(k)+'</button>'}).join("")+'</div>'
+  +'<textarea id="txt" maxlength="500" aria-label="'+esc(tr("rTitle"))+'" placeholder="'+esc(tr("desc"))+'">'+esc(S.msg)+'</textarea>'
+  +'<p><button class="btn" id="mic">🎤 '+tr("speak")+'</button></p>'
+  +'<label style="display:flex;gap:10px;align-items:center;min-height:44px"><input type="checkbox" id="anon" '+(S.anon?"checked":"")+' style="width:22px;height:22px"> '+tr("anon")+'</label>'
+  +'<p><button class="big" id="sendR">'+tr("send")+'</button></p></div>';
+  if(mine.length)h+='<div class="card"><h3>'+tr("mine")+'</h3>'+mine.map(function(x){return '<div class="row"><span>'+esc(x.text)+'</span><span class="tag '+tagCls(x.status)+'">'+stName(x.status)+'</span></div>'}).join("")+'</div>';
+  return h;
+}
+function fbTab(){
+  var tp=TOP[S.ind];
+  if(S.thanks)return '<div class="card alert ok"><h3>✔</h3>'+tr("thanks")+'</div>';
+  return '<div class="card"><h2>'+tr("fbT")+'</h2><div class="mut" style="margin-bottom:10px">🔒 '+tr("fbN")+'</div><h3>'+tr("topic")+'</h3><div class="chips">'+tp.map(function(t,i){return '<button class="chip '+(S.topic===i?"on":"")+'" data-tp="'+i+'" aria-pressed="'+(S.topic===i)+'">'+t[S.lang]+'</button>'}).join("")+'</div>'
+  +'<h3 style="margin-top:14px">'+tr("rate")+'</h3><div class="stars">'+[1,2,3,4,5].map(function(n){return '<button class="'+(S.rate>=n?"on":"")+'" data-rate="'+n+'" aria-pressed="'+(S.rate>=n)+'" aria-label="'+n+' / 5">★</button>'}).join("")+'</div>'
+  +'<textarea id="fbt" maxlength="500" aria-label="'+esc(tr("fbT"))+'" placeholder="'+esc(tr("desc"))+'"></textarea><p><button class="btn" id="mic2">🎤 '+tr("speak")+'</button></p><button class="big" id="sendF">'+tr("send")+'</button></div>';
+}
+function skTab(d){
+  return '<div class="card"><h2>'+tr("pass")+'</h2><div class="mut">'+tr("passN")+'</div>'+d.skills.map(function(s){return '<div class="sk"><em>'+s[0]+'</em><div style="flex:1"><b>'+s[1]+'</b><div class="mut">'+s[2]+'</div></div><span class="tag r">'+tr("ver")+'</span></div>'}).join("")+'</div>';
+}
+
+function employer(){
+  var d=D[S.ind],team=d.team.slice().sort(function(a,b){return risk(b)-risk(a)});
+  var rep=S.reports.filter(function(x){return x.ind===S.ind}),openN=rep.filter(function(x){return x.status!=="done"}).length;
+  var fat=team.filter(function(m){return m[1]>60||m[4]>=7}).length,lv=team.filter(function(m){return risk(m)>=50}).length;
+  var h='<h2>'+d.name+' dashboard</h2><div class="grid">'
+  +'<div class="kpi"><b>'+d.pres+'</b>Present today</div><div class="kpi"><b>'+openN+'</b>Open complaints and hazards</div><div class="kpi"><b style="color:var(--warn)">'+fat+'</b>Fatigue alerts</div><div class="kpi"><b style="color:var(--warn)">'+lv+'</b>At risk of leaving</div></div><div class="two">';
+  h+='<div class="card"><h3>Attendance this week (%)</h3><div class="bars" style="margin-top:22px" role="img" aria-label="Attendance percent, Monday to Sunday: '+d.att.join(', ')+'">'+d.att.map(function(v){return '<div class="'+(v<80?"hi":"")+'" style="height:'+v+'%"><b>'+v+'</b></div>'}).join("")+'</div><div class="lab">'+DAYS.map(function(x){return '<span>'+x+'</span>'}).join("")+'</div></div>';
+  h+='<div class="card"><h3>Feedback themes (anonymous)</h3>'+TOP[S.ind].map(function(t,i){
+    var f=S.fb.filter(function(x){return x.ind===S.ind&&x.topic===i});
+    var a=f.length?sum(f.map(function(x){return x.rate}))/f.length:0;
+    var cm=f.filter(function(x){return x.text}).slice(-2).map(function(x){return '<div class="mut">“'+esc(x.text)+'”</div>'}).join("");
+    return '<div style="margin-bottom:10px"><div class="row" style="border:0;padding:0"><b>'+t[0]+'</b><span>'+a.toFixed(1)+' / 5 · '+f.length+' responses</span></div><div class="meter"><i style="width:'+(a/5*100)+'%;background:'+(a<3?"var(--warn)":"var(--pri)")+'"></i></div>'+cm+'</div>'}).join("")+'</div></div>';
+  h+='<div class="card"><h3>Complaints and safety reports</h3>'+rep.map(function(x){
+    return '<div class="row" style="align-items:center;flex-wrap:wrap"><span style="flex:1;min-width:200px"><span class="tag '+(x.type==="safety"?"o":"")+'">'+(x.type==="safety"?"Safety":"Complaint")+'</span> '+esc(x.text)+'<div class="mut">'+(x.anon?"Anonymous":esc(x.who||D[x.ind].who))+'</div></span><select data-st="'+x.id+'" aria-label="Status">'+["open","prog","done"].map(function(s){return '<option value="'+s+'" '+(x.status===s?"selected":"")+'>'+({open:"Open",prog:"In progress",done:"Resolved"})[s]+'</option>'}).join("")+'</select></div>'}).join("")+'</div>';
+  h+='<div class="card scroll"><h3>Team wellbeing</h3><table><caption class="sr">Team wellbeing</caption><tr><th scope="col">Name</th><th>Hours (7 days)</th><th>Attendance</th><th>Mood</th><th>Flags</th><th>Leave risk</th></tr>'+team.map(function(m){
+    var fl=[];if(m[1]>60)fl.push("Overworked");if(m[4]>=7)fl.push("No rest day");
+    var r=risk(m);
+    return '<tr><td>'+m[0]+'</td><td>'+m[1]+'</td><td>'+m[2]+'%</td><td>'+m[3]+'/5</td><td>'+(fl.join(", ")||"—")+'</td><td><div class="meter"><i style="width:'+r+'%"></i></div>'+r+'</td></tr>'}).join("")+'</table></div>';
+  h+='<div class="card"><h3>How the same platform serves both industries</h3><div class="mut">Construction: QR check-in at the site gate, hazard reports, harness and scaffold certificates. College: QR check-in at the department, workload feedback, lab and records training. One engine, different topics, rates and certificates.</div></div>';
+  return h;
+}
+
+var pending=false;
+function focusKey(){var a=document.activeElement;if(!a||!a.dataset&&!a.id)return null;if(a.id)return"#"+a.id;var k=Object.keys(a.dataset||{})[0];return k?"[data-"+k.replace(/[A-Z]/g,function(c){return"-"+c.toLowerCase()})+"=\""+a.dataset[k]+"\"]":null}
+function draw(){var key=focusKey();pending=false;chrome();$("#app").innerHTML=S.role==="w"?worker():employer();if(key){var el=document.querySelector(key);if(el&&el.focus)el.focus()}}
+function render(){if(pending)return;pending=true;(typeof requestAnimationFrame==="function"?requestAnimationFrame:setTimeout)(draw)}
+function mic(target){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert(tr("nomic"));return}
+  try{var r=new SR();r.lang=["en-IN","ta-IN","hi-IN"][S.lang];
+  r.onresult=function(e){var el=$(target);el.value=(el.value+" "+e.results[0][0].transcript).trim()};
+  r.onerror=function(){alert(tr("nomic"))};r.start()}catch(x){alert(tr("nomic"))}
+}
+document.addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;var D2=b.dataset;
+  if(D2.i){S.ind=D2.i;S.inAt=null;S.out=null}
+  else if(D2.r){S.role=D2.r}
+  else if(D2.t){S.tab=D2.t;S.thanks=false;S.msg=""}
+  else if(D2.rt){var t=$("#txt");S.msg=t?t.value:"";S.rt=D2.rt}
+  else if(D2.tp){S.topic=+D2.tp}
+  else if(D2.rate){S.rate=+D2.rate}
+  else if(b.id==="scan"){S.inAt=new Date();say(tr("inAt")+" "+S.inAt.toLocaleTimeString())}
+  else if(b.id==="out"){S.out={reg:8,ot:2.5}}
+  else if(b.id==="speak"){var d=D[S.ind],p=pay(d);try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(tr("net")+" "+Math.round(p.net)+" "+(S.lang?"":"rupees")+". "+tr("howTxt",{d:d.days,r:d.rate,o:d.ot}));u.lang=["en-IN","ta-IN","hi-IN"][S.lang];speechSynthesis.speak(u)}catch(x){}return}
+  else if(b.id==="mic"){mic("#txt");return}
+  else if(b.id==="mic2"){mic("#fbt");return}
+  else if(b.id==="sendR"){var v=clean($("#txt").value),an=$("#anon").checked;if(!v)return;if(!allowed()){say(tr("wait"));return}S.reports.push({id:nid++,ind:S.ind,type:S.rt,text:v,anon:an,who:an?null:D[S.ind].who,mine:true,status:"open"});S.anon=an;S.msg="";say(tr("sent"))}
+  else if(b.id==="sendF"){if(!S.rate)return;if(!allowed()){say(tr("wait"));return}S.fb.push({ind:S.ind,topic:S.topic,rate:S.rate,text:clean($("#fbt").value)});S.thanks=true;S.rate=0;say(tr("thanks"))}
+  else return;
+  render();
+});
+document.addEventListener("change",function(e){
+  if(e.target.id==="lang"){var t=$("#txt");if(t)S.msg=t.value;S.lang=+e.target.value;render()}
+  else if(e.target.dataset.st){S.reports.forEach(function(x){if(x.id==+e.target.dataset.st)x.status=e.target.value});render()}
+});
+render();
+</script>
+</body>
+</html>

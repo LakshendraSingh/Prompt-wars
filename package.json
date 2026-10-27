@@ -1,0 +1,8 @@
+{
+  "name": "fairshift",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Decent work platform for employee-intensive organisations (SDG 8)",
+  "scripts": { "test": "node --test" },
+  "engines": { "node": ">=18" }
+}
